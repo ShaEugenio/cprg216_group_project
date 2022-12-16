@@ -1,7 +1,5 @@
 doctors_txt = 'doctors.txt'
 facilities_txt = 'facilities.txt'
-laboratories_txt = 'laboratories.txt'
-patients_txt = 'patients.txt'
 
 
 # Doctor class has 6 attributes, 10 methods
