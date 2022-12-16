@@ -8,8 +8,8 @@
 # input validation, so it assumes user is entering the correct data type. Program runs continuously unless the user
 # enters 0 on the main menu, only then that it terminates.
 
-from classes_grp import Doctor
-from LaboratoryPatient import Facility, Laboratory, Patient
+from classes_grp import Doctor, Facility
+from LaboratoryPatient import Laboratory, Patient
 
 doctor_navigation = Doctor()
 facility_navigation = Facility()
