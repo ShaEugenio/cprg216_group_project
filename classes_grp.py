@@ -1,113 +1,226 @@
-# Assignment IV: Classes
-# Author: Zoë Goodwin, ID# 897676; 2022-12-07
 
+
+file_for_Doctor ='doctors.txt'
+list_of_doctors = []
+file_for_facilities = 'facilities.txt'
+list_of_facilities = []
+file_for_Laboratory ='laboratories.txt'
+list_of_Laboratory =[]
+file_for_patients ='patients.txt'
+list_of_patients =[]
 
 class Doctor:
-    def __init__(self, id, name, specialization, workingtime, qualification, roomnumber):
-        self.__id = id
-        self.__name = name
-        self.__spec = specialization
-        self.__workt = workingtime
-        self.__qual = qualification
-        self.__room = roomnumber
+    def __init__(self,ID, Name, Specialization, Working_Time, Qualification, Room_Number):
+        self.ID = ID
+        self.Name = Name
+        self.Specialization = Specialization
+        self.Working_Time = Working_Time
+        self.Qualification = Qualification
+        self.Room_Number = Room_Number
 
-    # Will format each doctor's information as found in doctors.txt
     def formatDrInfo(self):
+        format()
+        return format()
+    def enterDrInfo(self):
+        self.readDoctorsFile()
+        self.ID = int(input("Doctor's ID\n"))
+        self.Name = input("Doctor's Name\n")
+        self.Specialization = input("Doctor's Specialization\n")
+        self.Working_Time = input("Doctor's Working_Time\n")
+        self.Qualification = input("Doctor's Qualification\n")
+        self.Room_Number = input("Doctor's Room_Number\n")
+        list=[]
+        list.append(Doctor(self.ID, self.Name, self.Specialization, self.Working_Time,self.Qualification,self.Room_Number ))
 
-    # Asks the user to enter the doctor's information
-    @classmethod
-    def enterDrInfo(cls):
-        id = int(input('Enter ID: '))
-        name = input('Enter name: ')
-        specialization = input('Enter specialization: ')
-        workingtime = input('Enter working time: ')
-        qualification = input('Enter qualification: ')
-        roomnumber = int(input('Enter room number: '))
-        print('Back to the previous menu\n\n')
-        return cls(id, name, specialization, workingtime, qualification, roomnumber)
+    def readDoctorsFile(self):
+            file01 = open("doctors.txt",'r')
+            file01.close()
 
-    # Reads the information from doctors.txt
-    @classmethod
-    def readDoctorsFile(cls):
-        doctors_list_all = []
-        with open('doctors.txt', 'r') as doctors_txt:
-            for line in doctors_txt:
-                id_str, name, specialization, workingtime, qualification, roomnumber = line.strip().split('_')
-                doctors_list_all.append(Doctor(id_str, name, specialization, workingtime, qualification, roomnumber))
-        return doctors_list_all
-
-    # Searches doctors.txt to see whether doctor ID entered is listed
-    @classmethod
-    def searchDoctorById(cls, __id):
-        with open('doctors.txt', 'r') as search_id:
-            field_titles = search_id.readline()
-            print(field_titles)
-            for line in search_id:
-                id_str, name, specialization, workingtime, qualification, roomnumber = line.strip().split('_')
-                if int(id_str) == __id:
-                    print(line)
-                    return
-        print('Cannot find a doctor with that ID number.\n')
-
-    # Searches doctors.txt to see whether doctor Name entered is listed
-    @classmethod
-    def searchDoctorByName(cls, __name):
-        with open('doctors.txt','r') as search_name:
-            field_titles = search_name.readline()
-            print(field_titles)
-            for line in search_name:
-                id_str, name, specialization, workingtime, qualification, roomnumber = line.strip().split('_')
-                if name == __name:
-                    list(line)
-                    return
-        print('Cannot find a doctor with that name.\n')
-
-    # Displays selected doctor's information from doctors.txt as a list
-    @staticmethod
+    def searchDoctorById(self):
+        doctorID=int(input("please enter doctor's id"))
+        if doctorID.strip() == self.ID.strip():
+            print("yes, doctor is here")
+            print(self.ID, self.Name, self.Specialization, self.Working_Time,self.Qualification,self.Room_Number)
+    def searchDoctorByName(self):
+        doctorName = int(input("please enter doctor's name"))
+        if doctorName.strip() == self.Name.strip():
+            print("yes, doctor is here")
+            print(self.ID, self.Name, self.Specialization, self.Working_Time,self.Qualification,self.Room_Number)
     def displayDoctorInfo(self):
-        doctor_list_single = []
-
-
-    # Asks user to enter doctor ID to change information, then lets user change it
+        for each_row in list_of_doctors:
+            print(each_row)
     def editDoctorInfo(self):
-
-    # Displays information of all doctors from doctors.txt as a table.
-    @staticmethod
+        id_number = int(input("Please enter the doctor ID to edit : \n"))
+        self.id = id_number
+        generalrow = len(list_of_doctors)
+        nowrow = 1
+        last_row = generalrow - 1
+        doctor_found = ''
+        self.name = input("Please enter a new Name: \n")
+        self.specialization = input("Please enter a new Specialist in: \n")
+        self.working_time = input("Please enter new Timing: \n")
+        self.qualification = input("Please enter new Qualification: \n")
+        self.room_number = int(input("Please enter new Room number: \n"))
+        while nowrow < generalrow:
+            if str(id_number) == list_of_doctors[nowrow][0]:
+                list_of_doctors[nowrow][1] = self.name
+                list_of_doctors[nowrow][2] = self.specialization
+                list_of_doctors[nowrow][3] = self.working_time
+                list_of_doctors[nowrow][4] = self.qualification
+                list_of_doctors[nowrow][5] = str(self.room_number)
+                doctor_found = 'yes'
+            if doctor_found != 'yes' and nowrow == last_row:
+                print("Can't find the doctor with the same ID on the system")
+            nowrow += 1
+        self.writeListOfDoctorsToFile()
+        
     def displayDoctorsList(self):
-        for doctor in self.doctors_list_all:
-            print(f'{doctor.id_str:<10} {doctor.name:<30} {doctor.specialization:<20} {doctor.workingtime:<20} {doctor.qualification:<20} {doctor.roomnumber}')
-        print('Back to the previous menu')
+        for each_row in list_of_doctors:
+            print(each_row)
+        generalrow = len(list_of_doctors)
+        nowrow = 1
+        print(f'{"ID":<10}' + f'{"Name":<15}' + f'{"Specialty":<15}' + f'{"Timing":<15}' + f'{"Qualification":<17}' + 'Room Number')
+        while nowrow < generalrow:
+            print(f'{list_of_doctors[nowrow][0]:<10}' + f'{list_of_doctors[nowrow][1]:<15}' + f'{list_of_doctors[nowrow][2]:<15}' + f'{list_of_doctors[nowrow][3]:<15}' + f'{list_of_doctors[nowrow][4]:<17}' + list_of_doctors[nowrow][5])
+            nowrow += 1
+            
+class Facility:
+    def __init__(self, facility_name):
+            self.facility_name = facility_name
 
-    # Correctly formats, and then writes the list of doctors to doctors.txt
-    def writeListOfDoctorsToFile(self):
+            self.__facility_list = []  # as a private list
 
-    # Correctly formats, and writes a single doctor entry to doctors.txt
-    def addDrToFile(self):
-        with open('doctors.txt', 'a') as add_doctor:
-            add_doctor.write(f'{self.__id}_{self.__name}_{self.__spec}_{self.__workt}_{self.__qual}_{self.__room}\n')
+            self.__facility_list.append(Facility)
+    print("added")
 
+    def addFacility(self):
+        self.__facility_list.append(Facility)
+        
+    def displayFacilities(self):
+        for Facility in self.__facility_list:
+            print("new is:", Facility)
+            print("")
+        faci = Facility("ER")
+        faci.displayFacilities()
 
-
+    def writeListOffacilitiesToFile(self):
+        facilities_file = open(file_for_facilities, 'w')
+        for each_line in list_of_facilities:
+            line = each_line
+            facilities_file.write(line)
+            facilities_file.write('\n')
+            facilities_file.close()
 
 class Laboratory:
-    def __init__(self, Lab_Name, Cost):
-        self.__Lab_Name = Lab_Name
-        self.__Lab_Cost = Cost
-    # Adds and writes the lab name to laboratories.txt
-    def addLabToFile(self):
+    def __init__(self, lab_name, cost):
+        self.lab_name = lab_name
+        self.cost = cost
 
-    # Writes the list of labs into laboratories.txt
+    def addLabToFile(self, new_lab):
+        self.__Laboratory_list.append(Laboratory)
+
     def writeListOfLabsToFile(self):
+        Laboratory_file = open(file_for_Laboratory, 'w')
+        for each_line in list_of_facilities:
+            line = each_line
+            Laboratory_file.write(line)
+            Laboratory_file.write('\n')
+        Laboratory_file.close()
 
-    # Displays the list of laboratories
-    def displayLabsList
+    def displayLabsList(self):
+        for Laboratory in self.__Laboratory_list:
+            print("new is:", Laboratory)
+            print("")
 
-    # Formats the laboratory object similar to existing entries in laboratories.txt
-    def formatLabInfo
+        lab01 = Laboratory("ER")
 
-    # Asks the user to enter lab name and cost, then creates a laboratory object
-    def enterLaboratoryInfo
+        lab01.displayLabsList()
 
-    # Reads laboratories.txt and fills its contents with a list of laboratory objects
-    def readLaboratoriesFile
+    def formatLabInfo(self):
+        format()
+        return format()
 
+    def enterLaboratoryInfo(self):
+        self.lab_name = input("Please enter Laboratory facility:\n")
+        self.cost = int(input("Please enter Laboratory cost:\n"))
+        new_lab = [self.lab_name, str(self.cost)]
+        self.addLabToFile(new_lab)
+
+    def readLaboratoriesFile(self):
+        file = open(file_for_Laboratory, 'r')
+        for each_line in file:
+            list_of_Laboratory.append(each_line.rstrip().split('_'))
+        file.close()
+
+
+class Patient:
+    def __init__(self, pid, name, disease, gender, age):
+            self.pid = pid
+            self.name = name
+
+            self.disease = disease
+            self.gender = gender
+            self.age = age
+
+    def formatPatientInfo(self):
+        format()
+        return format()
+
+    def enterPatientInfo(self):
+        self.pid=int(input("please enter the patients’s ID: \n"))
+        self.name = input("please enter the name of patient: \n")
+        self.disease = input("please enter the disease of patient: \n")
+        self.gender = input("please enter gender of patient: \n")
+        self.age = int(input("please enter the age of patient: \n"))
+        return [str(self.pid), self.name, self.disease, self.gender, str(self.age)]
+
+    def readPatientsFile(self):
+        file = open(file_for_patients, 'r')
+        list_of_patients = []
+        for each_line in file:
+            list_of_patients.append(each_line.rstrip().split('_'))
+        file.close()
+        return list_of_patients
+
+    def searchPatientById(self):
+        self.pid =int(input("please enter the Patient's ID: \n"))
+        list_of_patients = self.readPatientsFile()
+        generalrow = len(list_of_patients)
+        nowrow = 1
+        last_row = generalrow - 1
+        patient_found = ''
+        while nowrow < generalrow:
+            if str('pid') == list_of_patients[nowrow][0]:
+                print(f'{"ID"}' + f'{"Name"}' + f'{"Disease"}' + f'{"Gender"}' + "Age")
+                print(
+                    f'{list_of_patients[nowrow][0]:<10}' + f'{list_of_patients[nowrow][1]:<15}' + f'{list_of_patients[nowrow][2]:<15}' + f'{list_of_patients[nowrow][3]:<15}' +
+                    list_of_patients[nowrow][4])
+                patient_found = 'yes'
+            if patient_found != 'yes' and nowrow == last_row:
+                print("Can't find the patient with the same ID on the system")
+            nowrow += 1
+    def editPatientInfo(self):
+        self.pid=int(input("please enter the patients’s ID: \n"))
+        self.name = input("please enter the name of patient: \n")
+        self.disease = input("please enter the disease of patient: \n")
+        self.gender = input("please enter gender of patient: \n")
+        self.age = int(input("please enter the age of patient: \n"))
+        list = []
+        list.append(Patient(self.PID, self.Name, self.Diesease, self.Gender, self.Age))
+
+    def displayPatientsList(self):
+        patients_file = open(file_for_patients, 'w')
+        for each_line in list_of_patients:
+            line = each_line
+            patients_file.write(line)
+            patients_file.write('\n')
+        patients_file.close()
+    def writeListOfPatientsToFile(self):
+        patients_file = open(file_for_patients, 'w')
+        for each_line in list_of_patients:
+            line = each_line
+            patients_file.write(line)
+            patients_file.write('\n')
+        patients_file.close()
+    def addPatientToFile(self):
+        self.__patients_list.append(list_of_patients)
