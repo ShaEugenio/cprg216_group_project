@@ -1,5 +1,5 @@
 # CPRG 216 Project: Management System Program for Alberta Hospital
-# Author: Sha Eugenio
+# Authors: Bryan Zhou, Zoe Goodwin, Sha Eugenio
 # This program has management class that takes care of the navigation, user prompts, and program continuity.
 # Doctor class for information management which can be used to display, search, add and edit doctor information when
 # called. Facilities class can add and display facilities when called. Read method for facilities class was also added
@@ -8,7 +8,7 @@
 # input validation, so it assumes user is entering the correct data type. Program runs continuously unless the user
 # enters 0 on the main menu, only then that it terminates.
 
-from Hospital import Doctor, Facility, Laboratory, Patient
+from classes_grp import Doctor, Facility, Laboratory, Patient
 
 doctor_navigation = Doctor()
 facility_navigation = Facility()
