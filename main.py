@@ -1,5 +1,5 @@
 # CPRG 216 Project: Management System Program for Alberta Hospital
-# Author: Sha Eugenio
+# Authors: Bryan Zhou, Zoe Goodwin, Sha Eugenio
 # This program has management class that takes care of the navigation, user prompts, and program continuity.
 # Doctor class for information management which can be used to display, search, add and edit doctor information when
 # called. Facilities class can add and display facilities when called. Read method for facilities class was also added
