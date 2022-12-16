@@ -73,27 +73,29 @@ class Doctor:
                 print("Can't find the doctor with the same ID on the system")
             nowrow += 1
         self.writeListOfDoctorsToFile()
+        
     def displayDoctorsList(self):
         for each_row in list_of_doctors:
             print(each_row)
-
         generalrow = len(list_of_doctors)
         nowrow = 1
         print(f'{"ID":<10}' + f'{"Name":<15}' + f'{"Specialty":<15}' + f'{"Timing":<15}' + f'{"Qualification":<17}' + 'Room Number')
         while nowrow < generalrow:
             print(f'{list_of_doctors[nowrow][0]:<10}' + f'{list_of_doctors[nowrow][1]:<15}' + f'{list_of_doctors[nowrow][2]:<15}' + f'{list_of_doctors[nowrow][3]:<15}' + f'{list_of_doctors[nowrow][4]:<17}' + list_of_doctors[nowrow][5])
             nowrow += 1
-
+            
 class Facility:
     def __init__(self, facility_name):
             self.facility_name = facility_name
+
             self.__facility_list = []  # as a private list
+
             self.__facility_list.append(Facility)
-            print("added")
+    print("added")
 
     def addFacility(self):
         self.__facility_list.append(Facility)
-
+        
     def displayFacilities(self):
         for Facility in self.__facility_list:
             print("new is:", Facility)
@@ -155,6 +157,7 @@ class Patient:
     def __init__(self, pid, name, disease, gender, age):
             self.pid = pid
             self.name = name
+
             self.disease = disease
             self.gender = gender
             self.age = age
@@ -203,8 +206,7 @@ class Patient:
         self.gender = input("please enter gender of patient: \n")
         self.age = int(input("please enter the age of patient: \n"))
         list = []
-        list.append(
-            Patient(self.PID, self.Name, self.Diesease, self.Gender, self.Age))
+        list.append(Patient(self.PID, self.Name, self.Diesease, self.Gender, self.Age))
 
     def displayPatientsList(self):
         patients_file = open(file_for_patients, 'w')
@@ -222,20 +224,3 @@ class Patient:
         patients_file.close()
     def addPatientToFile(self):
         self.__patients_list.append(list_of_patients)
-
-class management:
-    def DisplayMenu(self,user):
-        self.user = user
-        user=input("ID number")
-        selection= int(input("please input number"))
-        if selection==1:
-            Doctor()
-        if selection==2:
-            Facility()
-        if selection==3:
-            Laboratory()
-        if selection==4:
-            Patient()
-        elif selection ==0:
-            print("Quit")
-
