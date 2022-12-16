@@ -1,4 +1,4 @@
-C:\Users\georc\AppData\Local\Programs\Python\Python310\python.exe "C:/Users/georc/PycharmProjects/GitHub Individual/cprg216_individual_project/main.py" 
+
 Welcome to Alberta Hospital (AH) Management system 
 Select from the following options, or select 0 to stop:
 1 - Doctors
